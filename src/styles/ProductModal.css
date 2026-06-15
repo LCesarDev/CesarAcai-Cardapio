@@ -1,0 +1,106 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.6);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+
+  width: 90%;
+  max-width: 420px;
+
+  border-radius: 16px;
+
+  padding: 20px;
+
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content h2 {
+  color: #5b2173;
+  margin-bottom: 8px;
+}
+
+.desc {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.sizes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.size-option {
+  display: flex;
+  gap: 10px;
+
+  padding: 10px;
+
+  border: 1px solid #eee;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.size-option input {
+  accent-color: #5b2173;
+}
+
+.selected {
+  font-size: 14px;
+  color: #5b2173;
+  margin-bottom: 12px;
+}
+
+.add-btn {
+  width: 100%;
+
+  padding: 14px;
+
+  background: #5b2173;
+  color: white;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-weight: bold;
+
+  margin-bottom: 8px;
+}
+
+.close-btn {
+  width: 100%;
+
+  padding: 12px;
+
+  background: transparent;
+
+  border: 1px solid #ccc;
+
+  border-radius: 10px;
+}
