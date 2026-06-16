@@ -67,12 +67,17 @@ function Checkout() {
       )
       .join("\n");
 
-   const mensagem = "teste";
+    const mensagem = `
+ Pedido teste de emotes
 
-const url = `https://api.whatsapp.com/send?phone=${numeroLoja}&text=${encodeURIComponent(mensagem)}`;
 
-window.location.href = url;
+`;
 
+    const numeroLoja = "5531985082137";
+
+    const url = `https://api.whatsapp.com/send?phone=${numeroLoja}&text=${encodeURIComponent(mensagem)}`;
+
+    window.location.href = url;
   };
 
   return (
