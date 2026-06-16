@@ -55,6 +55,8 @@ function Checkout() {
   // 📲 ENVIAR PEDIDO
   const enviarPedido = () => {
 
+    alert(url);
+
     if (cartItems.length === 0) {
       alert("Seu carrinho está vazio!");
       return;
@@ -203,12 +205,12 @@ ${pagamento}
 
       <br /><br />
 
- <a
+    <button
   className="checkout-button"
-  href="https://api.whatsapp.com/send?phone=5531985082137"
+  onClick={enviarPedido}
 >
-  📲 Abrir WhatsApp
-</a>
+  📲 Enviar Pedido no WhatsApp
+</button>
     </div>
   );
 }
