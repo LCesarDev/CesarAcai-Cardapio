@@ -3,7 +3,7 @@ import { CartContext } from "../context/CartContext";
 
 function Checkout() {
 
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, clearCart } = useContext(CartContext);
 
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -12,48 +12,57 @@ function Checkout() {
   const [complemento, setComplemento] = useState("");
   const [pagamento, setPagamento] = useState("");
 
-  // ✔ Carregar cliente salvo
+  // 🟢 CARREGAR DADOS SALVOS (1 vez)
   useEffect(() => {
-    const clienteSalvo = localStorage.getItem("cliente");
+  const clienteSalvo = localStorage.getItem("cliente_atual");
 
-    if (clienteSalvo) {
-      const dados = JSON.parse(clienteSalvo);
+  if (clienteSalvo) {
+    const dados = JSON.parse(clienteSalvo);
 
-      setNome(dados.nome || "");
-      setTelefone(dados.telefone || "");
-      setEndereco(dados.endereco || "");
-      setNumero(dados.numero || "");
-      setComplemento(dados.complemento || "");
-    }
-  }, []);
+    setNome(dados.nome || "");
+    setTelefone(dados.telefone || "");
+    setEndereco(dados.endereco || "");
+    setNumero(dados.numero || "");
+    setComplemento(dados.complemento || "");
+  }
+}, []);
 
-  // ✔ Salvar automaticamente enquanto digita
+  // 🔵 SALVAR AUTOMATICAMENTE
   useEffect(() => {
-    localStorage.setItem(
-      "cliente",
-      JSON.stringify({
-        nome,
-        telefone,
-        endereco,
-        numero,
-        complemento
-      })
-    );
-  }, [nome, telefone, endereco, numero, complemento]);
 
-  // ✔ Total do carrinho
- const total = cartItems.reduce(
-  (acc, item) => acc + item.preco * item.quantidade,
-  0
-);
+  // só salva se tiver pelo menos nome ou telefone
+  if (!nome && !telefone) return;
 
-  // ✔ Enviar pedido WhatsApp
+  const cliente = {
+    nome,
+    telefone,
+    endereco,
+    numero,
+    complemento
+  };
+
+  localStorage.setItem("cliente_atual", JSON.stringify(cliente));
+
+}, [nome, telefone, endereco, numero, complemento]);
+
+  // 💰 TOTAL CORRETO
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.preco * item.quantidade,
+    0
+  );
+
+  // 📲 ENVIAR PEDIDO
   const enviarPedido = () => {
+
+    if (cartItems.length === 0) {
+      alert("Seu carrinho está vazio!");
+      return;
+    }
 
     const itensPedido = cartItems
       .map(
         item =>
-          `• ${item.nome} - ${item.tamanho}ml - R$ ${item.preco.toFixed(2)}`
+          `• ${item.nome} - ${item.tamanho}ml x${item.quantidade} - R$ ${(item.preco * item.quantidade).toFixed(2)}`
       )
       .join("\n");
 
@@ -79,9 +88,9 @@ ${pagamento}
 
     const numeroLoja = "5531985082137";
 
-    const url = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
+    const url = `https://api.whatsapp.com/send?phone=${numeroLoja}&text=${encodeURIComponent(mensagem)}`;
 
-    window.open(url, "_blank");
+    window.location.href = url;
   };
 
   return (
@@ -93,10 +102,12 @@ ${pagamento}
       {cartItems.map((item, index) => (
         <div key={index}>
           <p>
-            {item.nome} - {item.tamanho}ml
+            {item.nome} - {item.tamanho}ml x{item.quantidade}
           </p>
 
-          <p>R$ {item.preco.toFixed(2)}</p>
+          <p>
+            R$ {(item.preco * item.quantidade).toFixed(2)}
+          </p>
         </div>
       ))}
 

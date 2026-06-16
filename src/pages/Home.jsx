@@ -1,28 +1,20 @@
-import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-
-
+import { useState } from "react";
 import { produtos } from "../data/Produtos";
 import ProductCard from "../components/ProductCard";
 import ProductModal from "../components/ProductModal";
-import { CartContext } from "../context/CartContext";
 import Header from "../components/Header";
-
-
 import "../styles/Home.css";
 
 function Home() {
 
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
-
-  const { cartItems } = useContext(CartContext);
+  
 
   return (
-    
-
     <div className="home">
 
-       <Header />
+      <Header />
+
 
       {produtos.map(produto => (
         <ProductCard
@@ -32,14 +24,12 @@ function Home() {
         />
       ))}
 
-      {
-        produtoSelecionado && (
-          <ProductModal
-            produto={produtoSelecionado}
-            onClose={() => setProdutoSelecionado(null)}
-          />
-        )
-      }
+      {produtoSelecionado && (
+        <ProductModal
+          produto={produtoSelecionado}
+          onClose={() => setProdutoSelecionado(null)}
+        />
+      )}
 
     </div>
   );

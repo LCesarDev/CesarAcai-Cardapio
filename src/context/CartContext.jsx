@@ -4,10 +4,29 @@ export const CartContext = createContext();
 
 export function CartProvider({ children }) {
 
-  const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
-  });
+const [cartItems, setCartItems] = useState(() => {
+
+  const ultimoPedido = localStorage.getItem("ultimoPedido");
+
+  if (ultimoPedido) {
+
+    const horasPassadas =
+      (Date.now() - Number(ultimoPedido))
+      / (1000 * 60 * 60);
+
+    if (horasPassadas > 12) {
+
+      localStorage.removeItem("cart");
+      localStorage.removeItem("ultimoPedido");
+
+      return [];
+    }
+  }
+
+  const saved = localStorage.getItem("cart");
+
+  return saved ? JSON.parse(saved) : [];
+});
 
   // 💾 salvar sempre que mudar o carrinho
   useEffect(() => {

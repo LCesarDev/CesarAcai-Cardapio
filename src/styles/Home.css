@@ -5,3 +5,17 @@
 
   padding: 16px;
 }
+
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.user-box {
+  background: #5b2173;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+}
