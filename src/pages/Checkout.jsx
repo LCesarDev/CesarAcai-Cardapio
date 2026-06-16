@@ -68,9 +68,23 @@ function Checkout() {
       .join("\n");
 
     const mensagem = `
- Pedido teste de emotes
+🍧 Pedido César Açaí
 
+${itensPedido}
 
+💰 Total: R$ ${total.toFixed(2)}
+
+👤 Cliente: ${nome}
+📞 Telefone: ${telefone}
+
+📍 Endereço:
+${endereco}, ${numero}
+
+🏠 Complemento:
+${complemento}
+
+💳 Pagamento:
+${pagamento}
 `;
 
     const numeroLoja = "5531985082137";
@@ -189,12 +203,12 @@ function Checkout() {
 
       <br /><br />
 
-    <button
+ <a
   className="checkout-button"
-  onClick={enviarPedido}
+  href="https://api.whatsapp.com/send?phone=5531985082137"
 >
-  📲 Enviar Pedido no WhatsApp
-</button>
+  📲 Abrir WhatsApp
+</a>
     </div>
   );
 }
