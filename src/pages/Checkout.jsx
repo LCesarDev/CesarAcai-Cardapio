@@ -67,31 +67,12 @@ function Checkout() {
       )
       .join("\n");
 
-    const mensagem = `
-🍧 Pedido César Açaí
+   const mensagem = "teste";
 
-${itensPedido}
+const url = `https://api.whatsapp.com/send?phone=${numeroLoja}&text=${encodeURIComponent(mensagem)}`;
 
-💰 Total: R$ ${total.toFixed(2)}
+window.location.href = url;
 
-👤 Cliente: ${nome}
-📞 Telefone: ${telefone}
-
-📍 Endereço:
-${endereco}, ${numero}
-
-🏠 Complemento:
-${complemento}
-
-💳 Pagamento:
-${pagamento}
-`;
-
-    const numeroLoja = "5531985082137";
-
-    const url = `https://api.whatsapp.com/send?phone=${numeroLoja}&text=${encodeURIComponent(mensagem)}`;
-
-    window.open(url, "_self");
   };
 
   return (
