@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
+import "../styles/Checkout.css";
 
 function Checkout() {
 
@@ -90,17 +91,19 @@ ${pagamento}
 
     const url = `https://api.whatsapp.com/send?phone=${numeroLoja}&text=${encodeURIComponent(mensagem)}`;
 
-    window.location.href = url;
+    window.location.assign(url);
   };
 
   return (
-    <div>
+    <div className="checkout-container">
       <h1>Finalizar Pedido</h1>
 
       <h2>Resumo do Pedido</h2>
 
-      {cartItems.map((item, index) => (
-        <div key={index}>
+     <div className="checkout-summary">
+
+{cartItems.map((item, index) => (
+  <div key={index} className="checkout-item">
           <p>
             {item.nome} - {item.tamanho}ml x{item.quantidade}
           </p>
@@ -110,6 +113,8 @@ ${pagamento}
           </p>
         </div>
       ))}
+
+      </div>
 
       <h3>Total: R$ {total.toFixed(2)}</h3>
 
@@ -198,9 +203,12 @@ ${pagamento}
 
       <br /><br />
 
-      <button onClick={enviarPedido}>
-        Enviar Pedido
-      </button>
+    <button
+  className="checkout-button"
+  onClick={enviarPedido}
+>
+  📲 Enviar Pedido no WhatsApp
+</button>
     </div>
   );
 }

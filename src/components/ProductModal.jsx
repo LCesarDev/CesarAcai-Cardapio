@@ -16,6 +16,9 @@ function ProductModal({ produto, onClose }) {
         <h2>{produto.nome}</h2>
 
         <p className="desc">{produto.descricao}</p>
+        <div className="product-preview">
+  🍧
+</div>
 
         <div className="sizes">
           {produto.tamanhos.map(tamanho => (

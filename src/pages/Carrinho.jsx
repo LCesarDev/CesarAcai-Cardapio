@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 import "../styles/Carrinho.css";
 
 function Carrinho() {
@@ -19,6 +20,13 @@ function Carrinho() {
 
   return (
     <div>
+
+        
+        <img
+          src={logo}
+          alt="César Açaí"
+          className="logo"
+        />
 
       <h1>Carrinho</h1>
 
@@ -69,24 +77,34 @@ function Carrinho() {
 
   </div>
 ))}
-      <h2>Total: R$ {total.toFixed(2)}</h2>
+     <div className="cart-summary">
 
-      <Link to="/checkout">
-        <button>Finalizar Pedido</button>
-      </Link>
+  <h3>Total do pedido</h3>
 
-      <button
+  <h2>R$ {total.toFixed(2)}</h2>
+
+  <Link to="/checkout">
+    <button
+      className="checkout-btn"
+      disabled={cartItems.length === 0}
+    >
+      🛒 Finalizar Pedido
+    </button>
+  </Link>
+
+</div>
+
+<Link to="/">
+  <button className="continue-btn">
+    ⬅ Continuar comprando
+  </button>
+</Link>
+
+<button
+  className="clear-btn"
   onClick={clearCart}
-  style={{
-    marginTop: "10px",
-    background: "#ff4d4d",
-    color: "white",
-    padding: "10px",
-    border: "none",
-    borderRadius: "8px"
-  }}
 >
-  Limpar carrinho
+  🗑️ Limpar carrinho
 </button>
 
     </div>
