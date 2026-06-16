@@ -55,8 +55,6 @@ function Checkout() {
   // 📲 ENVIAR PEDIDO
   const enviarPedido = () => {
 
-    alert(url);
-
     if (cartItems.length === 0) {
       alert("Seu carrinho está vazio!");
       return;
