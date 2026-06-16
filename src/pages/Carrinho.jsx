@@ -20,15 +20,15 @@ function Carrinho() {
 
   return (
     <div>
-
-        
+       
         <img
           src={logo}
           alt="César Açaí"
-          className="logo"
+          className="logoCarrinho"
         />
 
-      <h1>Carrinho</h1>
+      <h1 className="Titulo">Carrinho</h1>
+      
 
       {cartItems.map((item, index) => (
   <div key={index} className="cart-item">

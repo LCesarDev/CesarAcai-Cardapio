@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
+import logo from "../assets/logo.png";
 import "../styles/Checkout.css";
 
 function Checkout() {
@@ -95,7 +96,15 @@ ${pagamento}
   };
 
   return (
+
     <div className="checkout-container">
+
+      <img
+                src={logo}
+                alt="César Açaí"
+                className="logoCheckout"
+              />
+              
       <h1>Finalizar Pedido</h1>
 
       <h2>Resumo do Pedido</h2>
