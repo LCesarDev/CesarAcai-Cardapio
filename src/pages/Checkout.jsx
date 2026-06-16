@@ -91,7 +91,7 @@ ${pagamento}
 
     const url = `https://api.whatsapp.com/send?phone=${numeroLoja}&text=${encodeURIComponent(mensagem)}`;
 
-    window.location.href = url;
+    window.open(url, "_blank");
   };
 
   return (
